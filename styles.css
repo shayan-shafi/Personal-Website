@@ -618,6 +618,7 @@ main {
 .scroll-highlight {
     position: relative;
     display: inline;
+    isolation: isolate;
 }
 
 .scroll-highlight::after {
@@ -838,12 +839,22 @@ main {
     .connect-grid {
         grid-template-columns: 1fr;
     }
+    .connect-col-header {
+        display: none;
+    }
     .connect-item {
         border-right: none;
     }
     .connect-item:last-child {
         border-bottom: none;
     }
+    /* Shayan items first, then Xyra items */
+    .connect-item:nth-child(3) { order: 1; } /* Email */
+    .connect-item:nth-child(4) { order: 2; } /* Instagram */
+    .connect-item:nth-child(6) { order: 3; } /* LinkedIn */
+    .connect-item:nth-child(8) { order: 4; } /* GitHub */
+    .connect-item:nth-child(5) { order: 5; } /* Xyra Instagram */
+    .connect-item:nth-child(7) { order: 6; } /* Xyra LinkedIn */
 }
 
 /* Footer */
