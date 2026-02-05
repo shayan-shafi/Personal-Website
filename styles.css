@@ -515,22 +515,62 @@ main {
 @media (max-width: 600px) {
     .music-bottom-annotated {
         flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+    .music-bottom-annotated .annotated-arrow-left,
+    .music-bottom-annotated .annotated-arrow-right {
+        display: none;
+    }
+    .music-bottom-annotated .annotated-label {
+        text-align: center;
+    }
+    .music-bottom-annotated .annotated-label.annotated-left,
+    .music-bottom-annotated .annotated-label.annotated-right {
+        min-width: unset;
+        width: 100%;
     }
     .music-bottom-row {
         flex-direction: column;
+        align-items: center;
+        max-width: 100%;
+        width: 100%;
+    }
+    .music-bottom-item {
+        max-width: 280px;
+        width: 100%;
     }
 }
 
 @media (max-width: 600px) {
-    .wrapped-row {
-        flex-direction: column;
-        align-items: center;
+    .wrapped-container {
+        margin-bottom: 32px;
     }
-    
-    .wrapped-year img,
-    .wrapped-year-center img {
-        max-width: 300px;
-        transform: none;
+    .graph-y-axis {
+        display: none;
+    }
+    .wrapped-row {
+        gap: 8px;
+        padding-left: 0;
+        padding-bottom: 12px;
+    }
+    .wrapped-year:nth-child(1) img {
+        max-height: 160px;
+    }
+    .wrapped-year:nth-child(2) img {
+        max-height: 210px;
+    }
+    .wrapped-year:nth-child(3) img {
+        max-height: 280px;
+    }
+    .wrapped-year img {
+        border-radius: 8px;
+    }
+    .year-labels-row {
+        padding-left: 0;
+    }
+    .year-label {
+        font-size: 0.75rem;
     }
 }
 
@@ -863,5 +903,83 @@ footer {
 
     .social-links {
         gap: 24px;
+    }
+}
+
+/* Mobile: Team photo labels + annotated wrappers */
+@media (max-width: 768px) {
+    /* Xyra team photo — move Cole/Kamran labels to top row */
+    .team-photo-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 16px;
+        justify-items: center;
+    }
+
+    .person-cole {
+        grid-column: 1;
+        grid-row: 1;
+        text-align: center;
+    }
+
+    .person-kamran {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: center;
+    }
+
+    .arrow-cole, .arrow-kamran {
+        display: none;
+    }
+
+    .team-img {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Consult annotated photos — stack vertically */
+    .annotated-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .annotated-wrapper .annotated-arrow-left,
+    .annotated-wrapper .annotated-arrow-right {
+        display: none;
+    }
+
+    .annotated-label.annotated-left,
+    .annotated-label.annotated-right {
+        text-align: center;
+    }
+
+    .annotated-wrapper img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+
+    .annotated-wrapper-wide img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Consult photo row — stack on small screens */
+    .consult-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .consult-img {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .consult-img img {
+        height: auto;
+        aspect-ratio: 4 / 3;
     }
 }
