@@ -97,6 +97,13 @@ const highlightObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting && !entry.target.classList.contains('highlighted')) {
             entry.target.classList.add('highlighted');
+            // #region agent log
+            const r = entry.target.getBoundingClientRect();
+            const rects = entry.target.getClientRects();
+            const rectArr = Array.from(rects).map(cr => ({x:Math.round(cr.x),y:Math.round(cr.y),w:Math.round(cr.width),h:Math.round(cr.height)}));
+            const cs = getComputedStyle(entry.target);
+            _log('script.js:highlight','Highlight triggered',{text:entry.target.textContent,boundingRect:{x:Math.round(r.x),y:Math.round(r.y),w:Math.round(r.width),h:Math.round(r.height)},clientRects:rectArr,numLines:rects.length,display:cs.display,position:cs.position,viewport:{w:window.innerWidth,h:window.innerHeight},hasClass:entry.target.classList.contains('highlighted')},'H-HL');
+            // #endregion
             highlightObserver.unobserve(entry.target);
         }
     });
