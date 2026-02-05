@@ -78,6 +78,11 @@ main {
     to { width: calc(100% + 16px); right: auto; }
 }
 
+@keyframes sweep-bg {
+    from { background-size: 0% 35%; }
+    to { background-size: 100% 35%; }
+}
+
 
 .tagline {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -929,6 +934,25 @@ footer {
        that buries z-index:-1 highlight pseudo-elements on Safari */
     .content-section {
         contain: none;
+    }
+
+    /* Fix highlight on mobile — ::after with position:absolute breaks
+       when inline text wraps across lines. Use background instead,
+       which flows naturally with text across line breaks. */
+    .scroll-highlight {
+        background-image: linear-gradient(rgba(255, 225, 0, 0.4), rgba(255, 225, 0, 0.4));
+        background-size: 0% 35%;
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+        padding: 0 4px;
+    }
+    .scroll-highlight::after {
+        display: none;
+    }
+    .scroll-highlight.highlighted {
+        animation: sweep-bg 0.5s ease-out forwards;
     }
 
     /* Xyra team photo — move Cole/Kamran labels to top row */
