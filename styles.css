@@ -7,7 +7,7 @@
 }
 
 html {
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
 }
 
 html:focus-within {
@@ -19,13 +19,11 @@ body {
     background-color: #fafafa;
     color: #1a1a1a;
     line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    overflow-x: clip;
 }
 
 img {
-    content-visibility: auto;
+    display: block;
 }
 
 main {
@@ -98,6 +96,7 @@ main {
 /* Photo Collage */
 .collage {
     padding: 40px 0 80px;
+    contain: layout style;
 }
 
 .collage-grid {
@@ -118,12 +117,19 @@ main {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
-    will-change: transform;
-    backface-visibility: hidden;
 }
 
 .collage-item:hover img {
     transform: scale(1.03);
+}
+
+@media (hover: none) {
+    .collage-item:hover img {
+        transform: none;
+    }
+    .collage-item img {
+        transition: none;
+    }
 }
 
 /* Collage item sizes */
@@ -168,6 +174,7 @@ main {
     padding: 80px 0;
     max-width: 700px;
     margin: 0 auto;
+    contain: layout style;
 }
 
 .toc-item {
@@ -181,8 +188,6 @@ main {
     text-decoration: none;
     cursor: pointer;
     transition: opacity 0.6s ease, transform 0.6s ease, background 0.15s ease, color 0.15s ease;
-    will-change: transform, opacity;
-    backface-visibility: hidden;
 }
 
 .toc-item:first-child {
@@ -229,6 +234,7 @@ main {
     padding: 120px 0 100px;
     max-width: 800px;
     margin: 0 auto;
+    contain: layout style;
 }
 
 .content-section:empty {
@@ -748,6 +754,7 @@ main {
     max-width: 700px;
     margin: 0 auto;
     border-top: 1px solid #eee;
+    contain: layout style;
 }
 
 .connect-title {
